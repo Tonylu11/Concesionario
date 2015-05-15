@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 @SuppressWarnings("serial")
 public class Coche implements Serializable {
+	private String ayudita= "ayudita";
 	private String matricula;
 	private Color color;
 	private Modelo modelo;
