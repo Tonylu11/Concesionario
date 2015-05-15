@@ -1,9 +1,5 @@
 package pgn.examenMarzo.concesionarioCoches;
-/**
- * 
- * @author Antonio Luque Bravo
- *
- */
+
 public enum Modelo {
 
 	SERIE1(Marca.BMW),
@@ -30,7 +26,7 @@ public enum Modelo {
 	}
 
 	public String toString() {
-		return name() + ", " + getMarca();
+		return name();
 
 	}
 

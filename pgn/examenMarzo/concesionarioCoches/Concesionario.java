@@ -3,7 +3,7 @@ package pgn.examenMarzo.concesionarioCoches;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import pgn.examenMarzo.concesionarioCoches.CocheNoExisteException;
+import pgn.examenMarzo.utiles.CocheNoExisteException;
 
 /*
  * No pueden existir dos coches con la misma matrícula en el almacén del concesinario
@@ -18,7 +18,7 @@ import pgn.examenMarzo.concesionarioCoches.CocheNoExisteException;
  * Han de conocerse todas sus características Ninguno de los valores puede ser
  * por defecto
  * 
- * @author Antonio Luque Bravo
+ * @author MaríaLourdes
  * 
  */
 @SuppressWarnings("serial")

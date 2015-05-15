@@ -3,11 +3,6 @@ package pgn.examenMarzo.concesionarioCoches;
 import java.io.Serializable;
 import java.util.regex.Pattern;
 
-/**
- * 
- * @author Antonio Luque Bravo
- *
- */
 @SuppressWarnings("serial")
 public class Coche implements Serializable {
 	private String matricula;
@@ -32,7 +27,8 @@ public class Coche implements Serializable {
 	static Coche instanciarCoche(String matricula, Color color, Modelo modelo)
 			throws MatriculaNoValidaException, ColorNoValidoException,
 			ModeloNoValidoException {
-		new Coche(matricula, color, modelo);
+		if (esValida(matricula) && color != null && modelo != null)
+			return new Coche(matricula, color, modelo);
 		return null;
 	}
 
