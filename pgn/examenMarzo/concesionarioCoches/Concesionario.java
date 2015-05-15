@@ -1,6 +1,9 @@
 package pgn.examenMarzo.concesionarioCoches;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
+import pgn.examenMarzo.concesionarioCoches.CocheNoExisteException;
 
 /*
  * No pueden existir dos coches con la misma matrícula en el almacén del concesinario
@@ -15,29 +18,40 @@ import java.util.ArrayList;
  * Han de conocerse todas sus características Ninguno de los valores puede ser
  * por defecto
  * 
- * @author MaríaLourdes
+ * @author Antonio Luque Bravo
  * 
  */
-public class Concesionario {
+@SuppressWarnings("serial")
+public class Concesionario implements Serializable {
 	/**
 	 * colección de coches. No puede tener null
 	 */
-	private ArrayList<Coche> almacen = new ArrayList<Coche>();
+	public ArrayList<Coche> almacen = new ArrayList<Coche>();
 	private final String nombre = "IES Gran Capitán";
+	private boolean modificado;
 
-	boolean annadir(String matricula, Color color, Modelo modelo) {
-		Coche coche = Coche.instanciarCoche(matricula, color, modelo);
-		if (coche == null || almacen.contains(coche))
-			return false;
+	public boolean annadir(String matricula, Color color, Modelo modelo)
+			throws MatriculaNoValidaException, ColorNoValidoException,
+			ModeloNoValidoException, CocheYaExistenteException {
+		Coche coche = new Coche(matricula, color, modelo);
+		if (almacen.contains(coche))
+			throw new CocheYaExistenteException("El coche ya existe");
+		setModificado(true);
 		return almacen.add(coche);
 	}
 
-	boolean eliminar(String matricula) {
-		return almacen.remove(Coche.instanciarCoche(matricula));
+	public boolean eliminar(String matricula)
+			throws MatriculaNoValidaException, CocheNoExisteException {
+		Coche coche = new Coche(matricula);
+		if (almacen.contains(coche)) {
+			setModificado(true);
+			return almacen.remove(coche);
+		} else
+			throw new CocheNoExisteException("El coche no existe");
+
 	}
 
-	
-	int size() {
+	public int size() {
 		return almacen.size();
 	}
 
@@ -48,13 +62,21 @@ public class Concesionario {
 	 *            Matrícula a buscar
 	 * @return Coche contenido en el almacén. null si no existe
 	 */
-	Coche get(String matricula) {
-		Coche coche = Coche.instanciarCoche(matricula);
+	public Coche get(String matricula) throws MatriculaNoValidaException,
+			CocheNoExisteException {
+		Coche coche = new Coche(matricula);
 		int index = almacen.indexOf(coche);
 		if (index != -1) {
 			return almacen.get(index);
 		}
-		return null;
+		throw new CocheNoExisteException("El coche no existe");
+	}
+
+	public Coche get(int index) {
+		if (almacen.isEmpty() | index < 0 | index > almacen.size() - 1)
+			return null;
+		return almacen.get(index);
+
 	}
 
 	/*
@@ -64,16 +86,24 @@ public class Concesionario {
 	 */
 	@Override
 	public String toString() {
-		return "Concesionario " + nombre + "[almacen=" + almacen + "]";
+		return "Concesionario " + nombre + "\n" + almacen;
 	}
 
 	public ArrayList<Coche> getCochesColor(Color color) {
 		ArrayList<Coche> arrCochesColor = new ArrayList<Coche>();
 		for (Coche coche : almacen) {
-			if(coche.getColor()== color)
+			if (coche.getColor() == color)
 				arrCochesColor.add(coche);
 		}
 		return arrCochesColor;
+	}
+
+	public void setModificado(boolean modificado) {
+		this.modificado = modificado;
+	}
+
+	public boolean isModificado() {
+		return modificado;
 	}
 
 }

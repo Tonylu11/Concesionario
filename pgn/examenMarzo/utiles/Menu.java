@@ -1,7 +1,5 @@
 package pgn.examenMarzo.utiles;
 
-
-
 /**
  * Clase utilizada para la gestión de un menú. Se dedica a:
  * 
@@ -9,7 +7,7 @@ package pgn.examenMarzo.utiles;
  * 
  * <li>Recoger y devolver las opciones de un menú
  * 
- * @author mlmc
+ * @author Antonio Luque Bravo
  * 
  */
 public class Menu {

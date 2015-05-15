@@ -7,7 +7,7 @@ package pgn.examenMarzo.concesionarioCoches;
  * al dar de alta al coche podrá implementarse un método pedirColor que mediante
  * la gestión de un menú, devolverá el color indicado
  * 
- * @author MaríaLourdes
+ * @author Antonio Luque Bravo
  * 
  */
 public enum Color {

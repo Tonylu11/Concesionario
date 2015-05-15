@@ -1,7 +1,9 @@
 package pgn.examenMarzo.concesionarioCoches;
+
 /**
  * Marcas de los coches del concesionario
- * @author MaríaLourdes
+ * 
+ * @author Antonio Luque Bravo
  *
  */
 public enum Marca {
