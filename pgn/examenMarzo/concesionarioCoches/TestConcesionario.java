@@ -22,6 +22,8 @@ import pgn.examenMarzo.concesionarioCoches.Modelo;
  * @author Antonio Luque Bravo
  * 
  */
+
+//Comentario de prueba
 @SuppressWarnings("serial")
 public class TestConcesionario extends Concesionario implements Serializable {
 	static Menu menu = new Menu("Concesionario de coches", new String[] {
